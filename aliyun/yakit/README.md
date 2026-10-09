@@ -38,6 +38,7 @@ redc run aliyun/yakit \
 | `instance_name` | `yakit-server` | 实例名称。 |
 | `yakit_port` | `8087` | Yakit 服务端监听端口。 |
 | `instance_password` | 自动生成 | 实例登录密码；留空时模板会生成随机密码。 |
+| `image_id` | `debian_11_7_x64_20G_alibase_20230907.vhd` | 控制 ECS 使用的系统镜像；更换时需与实例架构（x86_64）和系统盘兼容。 |
 
 ## 输出说明
 

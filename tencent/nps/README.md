@@ -36,6 +36,7 @@ redc run tencent/nps -e base64_command="$(base64 < nps.conf | tr -d '\n')"
 | `instance_password` | 否 | 自动生成 | `StrongPass123!` | 控制实例 SSH 登录密码；留空时自动生成，并通过输出返回。 |
 | `base64_command` | 否 | 模板内置 `nps.conf` | `$(base64 < nps.conf | tr -d '\n')` | 用于启动时覆盖默认 `nps.conf`，决定 NPS 的桥接端口、Web 后台配置等行为。 |
 | `github_proxy` | 否 | `https://ghfast.top/github.com` | `https://ghproxy.link/github.com` | 控制 nps 安装包下载加速地址，影响首次启动时的资源拉取。 |
+| `image_id` | 否 | `img-pi0ii46r` | `自定义镜像 ID` | 控制 CVM 使用的系统镜像；更换时需与实例架构和可用区兼容。 |
 
 ## 输出说明
 

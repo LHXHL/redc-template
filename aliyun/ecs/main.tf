@@ -8,7 +8,7 @@ locals {
 resource "alicloud_instance" "instance" {
   security_groups            = alicloud_security_group.group.*.id
   instance_type              = "ecs.e-c1m2.large"
-  image_id                   = "debian_12_2_x64_20G_alibase_20231012.vhd"
+  image_id                   = var.image_id
   instance_name              = local.instance_name
   vswitch_id                 = alicloud_vswitch.vswitch.id
   system_disk_category       = "cloud_essd_entry"

@@ -40,6 +40,7 @@ redc run tencent/jndi \
 | `tencentcloud_secret_key` | required | Tencent Cloud SecretKey. In normal usage this should come from the redc provider configuration. |
 | `github_proxy` | required | GitHub proxy prefix used to download JDK8, JNDIExploit, java-chains, and related tooling. |
 | `instance_password` | auto-generated | Instance login password. If left empty, the template generates a random one. |
+| `image_id` | `img-pi0ii46r` | Controls the CVM system image; replacement must be compatible with the instance architecture and availability zone. |
 
 ## Outputs
 

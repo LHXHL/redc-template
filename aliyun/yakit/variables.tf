@@ -4,6 +4,12 @@ variable "instance_name" {
   default     = "yakit-server"
 }
 
+variable "image_id" {
+  type        = string
+  description = "ECS system image ID"
+  default     = "debian_11_7_x64_20G_alibase_20230907.vhd"
+}
+
 variable "yakit_port" {
   type        = number
   description = "Yakit server listening port"

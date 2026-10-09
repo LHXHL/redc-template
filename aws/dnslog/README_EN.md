@@ -32,6 +32,7 @@ Replace `domain` with your own DNSLog domain.
 | `domain` | Yes | None | `dnslog.com` | Used to create and bind the DNSLog domain records. The scene cannot work correctly without it. |
 | `username` | No | `red123` | `admin` | Controls the DNSLog web username; customize it through template variables or `terraform.tfvars` if needed. |
 | `password` | No | `r1e2d3o4n5e6123` | `StrongPass123` | Controls the DNSLog web password; customize it through template variables or `terraform.tfvars` if needed. |
+| `ami` | No | `ami-01c9cc5554738042c` | `Custom image ID` | Controls the AMI used by the EC2 instance; the current instance type is ARM64, so replacement must match the architecture. |
 
 ## Outputs
 

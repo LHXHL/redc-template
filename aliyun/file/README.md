@@ -37,6 +37,7 @@ redc run aliyun/file \
 | `instance_name` | `fileserver` | 实例名称。 |
 | `github_proxy` | 必填 | GitHub 代理前缀，用于下载 `simplehttpserver` 发布包。 |
 | `instance_password` | 自动生成 | 实例登录密码；留空时模板会生成随机密码。 |
+| `image_id` | `debian_11_7_x64_20G_alibase_20230907.vhd` | 控制 ECS 使用的系统镜像；更换时需与实例架构（x86_64）和系统盘兼容。 |
 
 ## 输出说明
 

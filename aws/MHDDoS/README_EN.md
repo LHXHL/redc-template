@@ -60,8 +60,9 @@ ssh -i ./pte-proxy-key.pem admin@<public_ip>
 | `ddos_threads` | Yes | `1500` (from `terraform.tfvars`) | `500` | Threads per node, affecting stress level. |
 | `ddos_time` | Yes | `300` (from `terraform.tfvars`) | `3600` | Duration in seconds. |
 | `ddos_mode` | Yes | `APACHE` (from `terraform.tfvars`) | `POST` | Attack method; see `variables.tf` for valid values: `APACHE` / `COOKIE` / `BYPASS` / `DOWNLOADER` / `POST` / `XMLRPC`. |
+| `ami` | No | `ami-01c9cc5554738042c` | `Custom image ID` | Controls the AMI used by the EC2 instance; the current instance type is ARM64, so replacement must match the architecture. |
 
-> This template's `variables.tf` defines no `default` for any variable, so values must be supplied by `terraform.tfvars` or `-e` at deploy time; the Default column above reflects the in-repo `terraform.tfvars`.
+> Apart from `ami`, this template's `variables.tf` defines no `default` for any variable, so those values must be supplied by `terraform.tfvars` or `-e` at deploy time; the corresponding Default column entries above reflect the in-repo `terraform.tfvars`.
 
 ## Outputs
 

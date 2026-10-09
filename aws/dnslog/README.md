@@ -32,6 +32,7 @@ redc stop [uuid]
 | `domain` | 是 | 无 | `dnslog.com` | 用于创建和绑定 DNSLog 域名相关解析，是场景能否正常工作的核心参数。 |
 | `username` | 否 | `red123` | `admin` | 控制 DNSLog Web 后台用户名；如需自定义，可修改模板变量或 `terraform.tfvars`。 |
 | `password` | 否 | `r1e2d3o4n5e6123` | `StrongPass123` | 控制 DNSLog Web 后台密码；如需自定义，可修改模板变量或 `terraform.tfvars`。 |
+| `ami` | 否 | `ami-01c9cc5554738042c` | `自定义镜像 ID` | 控制 EC2 使用的 AMI；当前机型为 ARM64，更换时需与实例架构一致。 |
 
 ## 输出说明
 

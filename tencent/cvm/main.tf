@@ -14,7 +14,7 @@ locals {
 resource "tencentcloud_instance" "test" {
   instance_name              = local.instance_name
   availability_zone          = "ap-beijing-7"
-  image_id                   = "img-pi0ii46r"
+  image_id                   = var.image_id
   instance_type              = data.tencentcloud_instance_types.instance_types.instance_types.0.instance_type
   allocate_public_ip         = true
   internet_max_bandwidth_out = 50

@@ -4,6 +4,12 @@ variable "instance_name" {
   default     = "nps"
 }
 
+variable "image_id" {
+  type        = string
+  description = "CVM system image ID"
+  default     = "img-pi0ii46r"
+}
+
 variable "tencentcloud_secret_id" {
   type        = string
   description = "Set TencentCloud secret id."

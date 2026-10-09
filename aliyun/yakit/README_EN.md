@@ -38,6 +38,7 @@ redc run aliyun/yakit \
 | `instance_name` | `yakit-server` | Instance name. |
 | `yakit_port` | `8087` | Yakit server listening port. |
 | `instance_password` | auto-generated | Instance login password. If left empty, the template generates a random one. |
+| `image_id` | `debian_11_7_x64_20G_alibase_20230907.vhd` | Controls the ECS system image; replacement must match the instance architecture (x86_64) and system disk. |
 
 ## Outputs
 

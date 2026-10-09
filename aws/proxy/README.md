@@ -36,6 +36,7 @@ redc stop [uuid]
 | `filename` | 否 | `aws-config.yaml` | `team-proxy.yaml` | 控制本地或上传后的 Clash 配置文件名。 |
 | `buckets_name` | 否 | `test` | `proxy-config` | 仅在启用 R2 上传时使用，决定上传目标存储桶。 |
 | `buckets_path` | 否 | `/proxyfile/` | `/shared/aws/` | 仅在启用 R2 上传时使用，决定上传路径前缀。 |
+| `ami` | 否 | `ami-01c9cc5554738042c` | `自定义镜像 ID` | 控制 EC2 使用的 AMI；当前机型为 ARM64，更换时需与实例架构一致。 |
 
 ## 输出说明
 

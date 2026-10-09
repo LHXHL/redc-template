@@ -2,7 +2,7 @@
 
 ## Scene Description
 
-This scene deploys a small x86 ECS host in the fixed Aliyun region `cn-shanghai`. The instance type is hard-coded to `ecs.n1.small`, the image is Debian 11.7 x86_64, the system disk is 20GB, and the instance gets 100Mbps outbound internet bandwidth. It is suitable for temporary low-spec testing, jump-host, or general administration use cases.
+This scene deploys a small x86 ECS host in the fixed Aliyun region `cn-shanghai`. The instance type is hard-coded to `ecs.n1.small` and the system disk to 20GB, the image defaults to Debian 11.7 x86_64 (overridable through `image_id`), and the instance gets 100Mbps outbound internet bandwidth. It is suitable for temporary low-spec testing, jump-host, or general administration use cases.
 
 ## Prerequisites
 
@@ -49,6 +49,7 @@ redc stop [uuid]
 | --- | --- | --- |
 | `instance_name` | `ecs1c2g` | ECS instance name. |
 | `instance_password` | auto-generated | ECS login password. If left empty, the template generates a random password. |
+| `image_id` | `debian_11_7_x64_20G_alibase_20230907.vhd` | Controls the ECS system image; replacement must match the instance architecture (x86_64) and system disk. |
 
 ## Outputs
 
@@ -59,7 +60,7 @@ redc stop [uuid]
 
 ## Notes
 
-- The instance type is fixed to `ecs.n1.small`, the image is fixed to Debian 11.7 x86_64, and the system disk is fixed to 20GB. Those core resources are not exposed as tunable variables in this scene.
+- The instance type is fixed to `ecs.n1.small` and the system disk is fixed to 20GB; neither is exposed as a tunable variable. The image defaults to Debian 11.7 x86_64 and can be overridden through `image_id`.
 - The default security group opens all inbound TCP and UDP ports. Tighten exposure after deployment if this is not just a temporary host.
 - The user data attempts to remove Aliyun Aegis-related components, enables BBR, and installs basic tools such as tmux, screen, and trzsz.
 - The availability zone is selected automatically from zones in `cn-shanghai` that support `ecs.n1.small`. Common failure causes are insufficient balance, Aliyun API network timeouts, or regional capacity shortages.

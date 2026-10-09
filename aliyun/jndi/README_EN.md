@@ -37,6 +37,7 @@ redc run aliyun/jndi \
 | `instance_name` | `jndi` | Instance name. |
 | `github_proxy` | required | GitHub proxy prefix used to download JDK8, JNDIExploit, java-chains, and related tooling. |
 | `instance_password` | auto-generated | Instance login password. If left empty, the template generates a random one. |
+| `image_id` | `debian_11_7_x64_20G_alibase_20230907.vhd` | Controls the ECS system image; replacement must match the instance architecture (x86_64) and system disk. |
 
 ## Outputs
 

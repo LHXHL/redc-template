@@ -70,7 +70,7 @@ resource "alicloud_security_group_rule" "allow_all_udp" {
 resource "alicloud_instance" "ecs" {
   security_groups            = [alicloud_security_group.sg.id]
   instance_type              = var.instance_type
-  image_id                   = "debian_12_2_x64_20G_alibase_20231012.vhd"
+  image_id                   = var.image_id
   instance_name              = var.instance_name
   vswitch_id                 = alicloud_vswitch.vswitch.id
   system_disk_category       = "cloud_essd_entry"

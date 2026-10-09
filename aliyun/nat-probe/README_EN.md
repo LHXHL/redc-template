@@ -36,6 +36,7 @@ The default deployment creates 5 EIPs. Override it with `-e eip_count=...` when 
 | `eip_count` | No | `5` | `10` | Controls how many EIPs are attached, directly affecting exit count, DNAT rules, and cost. |
 | `eip_bandwidth` | No | `100` | `50` | Controls bandwidth per EIP and affects throughput and cost. |
 | `eip_isp` | No | `BGP` | `BGP_PRO` | Controls the EIP line type and affects line quality and billing behavior. |
+| `image_id` | No | `debian_12_2_x64_20G_alibase_20231012.vhd` | `debian_11_7_x64_20G_alibase_20230907.vhd` | Controls the ECS system image; replacement must match the instance architecture (x86_64) and system disk. |
 
 ## Outputs
 

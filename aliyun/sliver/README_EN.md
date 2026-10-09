@@ -56,8 +56,9 @@ sliver
 | `instance_name` | No | `sliver` | `sliver-test` | Controls the ECS instance name; falls back to `sliver`. |
 | `github_proxy` | Yes | none | `https://ghfast.top/github.com` | Prefix used to build the sliver and simplehttpserver download URLs; an empty value breaks downloads. |
 | `instance_password` | No | auto-generated | `StrongPass123!` | Controls the root login password; auto-generated when empty. |
+| `image_id` | No | `debian_11_7_x64_20G_alibase_20230907.vhd` | `debian_12_2_x64_20G_alibase_20231012.vhd` | Controls the ECS system image; replacement must match the instance architecture (x86_64) and system disk. |
 
-> Instance type, image, system disk and bandwidth are currently fixed in `main.tf` (`ecs.c7a.large`, Debian 11, 20 GiB, 100 Mbps) and are not exposed as variables.
+> Instance type, system disk and bandwidth are currently fixed in `main.tf` (`ecs.c7a.large`, 20 GiB, 100 Mbps) and are not exposed as variables; the image can be overridden through `image_id` and defaults to Debian 11.
 
 ## Outputs
 

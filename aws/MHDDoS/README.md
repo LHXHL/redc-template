@@ -60,8 +60,9 @@ ssh -i ./pte-proxy-key.pem admin@<public_ip>
 | `ddos_threads` | 是 | `1500`（来自 `terraform.tfvars`） | `500` | 每节点线程数，影响压测强度。 |
 | `ddos_time` | 是 | `300`（来自 `terraform.tfvars`） | `3600` | 持续时间，单位秒。 |
 | `ddos_mode` | 是 | `APACHE`（来自 `terraform.tfvars`） | `POST` | 攻击方法，取值见 `variables.tf`：`APACHE` / `COOKIE` / `BYPASS` / `DOWNLOADER` / `POST` / `XMLRPC`。 |
+| `ami` | 否 | `ami-01c9cc5554738042c` | `自定义镜像 ID` | 控制 EC2 使用的 AMI；当前机型为 ARM64，更换时需与实例架构一致。 |
 
-> 该模板的 `variables.tf` 未给任何变量设置 `default`，因此本次部署必须由 `terraform.tfvars` 或 `-e` 提供取值；表中「默认值」列取自仓库内 `terraform.tfvars`。
+> 除 `ami` 外，该模板的 `variables.tf` 未给其他变量设置 `default`，因此这些变量必须由 `terraform.tfvars` 或 `-e` 提供取值；表中对应的「默认值」列取自仓库内 `terraform.tfvars`。
 
 ## 输出说明
 

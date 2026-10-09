@@ -48,6 +48,7 @@ redc stop [uuid]
 | --- | --- | --- |
 | `instance_name` | `aliyun_ecs` | ECS instance name. |
 | `instance_password` | auto-generated | ECS login password. If left empty, the template generates a random one. |
+| `image_id` | `debian_12_2_x64_20G_alibase_20231012.vhd` | Controls the ECS system image; replacement must match the instance architecture (x86_64) and system disk. |
 
 ## Outputs
 
@@ -58,7 +59,7 @@ redc stop [uuid]
 
 ## Notes
 
-- The instance type is currently fixed in the template as `ecs.e-c1m2.large`, and the image is fixed to Debian 12 x86. This scene is not a highly tunable base template.
+- The instance type is currently fixed in the template as `ecs.e-c1m2.large`, so this scene is not a highly tunable base template. The image defaults to Debian 12 x86 and can be overridden through `image_id`.
 - The default security group opens all inbound TCP ports. Tighten exposure after deployment if the host is only meant for general operations.
 - The user data attempts to uninstall Aliyun security agent components and enables BBR.
 - Common failure causes are insufficient balance, Aliyun API network timeouts, or capacity shortages in the selected region.

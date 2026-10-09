@@ -38,7 +38,7 @@ resource "aws_security_group" "pte_open_all" {
 
 resource "aws_instance" "pte_node" {
   count                  = var.node
-  ami                    = "ami-01c9cc5554738042c"
+  ami                    = var.ami
   instance_type          = "t4g.nano"
   vpc_security_group_ids = [aws_security_group.pte_open_all.id]
   key_name               = aws_key_pair.pte_key.key_name

@@ -10,6 +10,12 @@ variable "instance_name" {
   default     = "nat-probe"
 }
 
+variable "image_id" {
+  type        = string
+  description = "ECS 系统镜像 ID"
+  default     = "debian_12_2_x64_20G_alibase_20231012.vhd"
+}
+
 variable "instance_password" {
   type        = string
   description = "ECS 登录密码 (留空自动生成)"

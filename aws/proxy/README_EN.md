@@ -36,6 +36,7 @@ The default deployment creates 10 nodes. Override the node count with `-e node=.
 | `filename` | No | `aws-config.yaml` | `team-proxy.yaml` | Controls the generated Clash configuration file name locally or after upload. |
 | `buckets_name` | No | `test` | `proxy-config` | Used only when R2 upload is enabled; defines the destination bucket name. |
 | `buckets_path` | No | `/proxyfile/` | `/shared/aws/` | Used only when R2 upload is enabled; defines the upload path prefix. |
+| `ami` | No | `ami-01c9cc5554738042c` | `Custom image ID` | Controls the AMI used by the EC2 instance; the current instance type is ARM64, so replacement must match the architecture. |
 
 ## Outputs
 

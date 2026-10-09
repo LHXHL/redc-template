@@ -36,6 +36,7 @@ redc stop [uuid]
 | `eip_count` | 否 | `5` | `10` | 控制绑定的 EIP 数量，直接影响出口数量、DNAT 规则数量和整体成本。 |
 | `eip_bandwidth` | 否 | `100` | `50` | 控制每个 EIP 的带宽上限，影响出口能力和成本。 |
 | `eip_isp` | 否 | `BGP` | `BGP_PRO` | 控制 EIP 线路类型，影响线路质量和计费策略。 |
+| `image_id` | 否 | `debian_12_2_x64_20G_alibase_20231012.vhd` | `debian_11_7_x64_20G_alibase_20230907.vhd` | 控制 ECS 使用的系统镜像；更换时需与实例架构（x86_64）和系统盘兼容。 |
 
 ## 输出说明
 

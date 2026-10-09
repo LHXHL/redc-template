@@ -56,8 +56,9 @@ sliver
 | `instance_name` | 否 | `sliver` | `sliver-test` | 控制 ECS 实例名；留空时使用 `sliver`。 |
 | `github_proxy` | 是 | 无 | `https://ghfast.top/github.com` | 用于拼接 sliver 与 simplehttpserver 的下载地址；留空会导致下载失败。 |
 | `instance_password` | 否 | 自动生成 | `StrongPass123!` | 控制 root 登录密码；留空时自动生成。 |
+| `image_id` | 否 | `debian_11_7_x64_20G_alibase_20230907.vhd` | `debian_12_2_x64_20G_alibase_20231012.vhd` | 控制 ECS 使用的系统镜像；更换时需与实例架构（x86_64）和系统盘兼容。 |
 
-> 实例规格、镜像、系统盘与带宽当前在 `main.tf` 中固定（`ecs.c7a.large`、Debian 11、20 GiB、100 Mbps），未通过变量暴露。
+> 实例规格、系统盘与带宽当前在 `main.tf` 中固定（`ecs.c7a.large`、20 GiB、100 Mbps），未通过变量暴露；镜像可通过 `image_id` 覆盖，默认 Debian 11。
 
 ## 输出说明
 

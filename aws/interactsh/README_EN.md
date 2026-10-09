@@ -30,6 +30,7 @@ Replace `domain` with your own interactsh domain.
 | Parameter | Required | Default | Example | Behavior Impact |
 |-----------|----------|---------|---------|-----------------|
 | `domain` | Yes | None | `interactsh.example.com` | Defines the domain bound to the interactsh service and used later by the client or web UI. |
+| `ami` | No | `ami-01c9cc5554738042c` | `Custom image ID` | Controls the AMI used by the EC2 instance; the current instance type is ARM64, so replacement must match the architecture. |
 
 ## Outputs
 

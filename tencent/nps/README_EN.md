@@ -36,6 +36,7 @@ redc run tencent/nps -e base64_command="$(base64 < nps.conf | tr -d '\n')"
 | `instance_password` | No | Auto-generated | `StrongPass123!` | Controls the SSH login password; when left empty, it is generated automatically and returned in outputs. |
 | `base64_command` | No | Bundled `nps.conf` | `$(base64 < nps.conf | tr -d '\n')` | Replaces the default `nps.conf` at startup and changes the bridge, web, and other NPS runtime behaviors. |
 | `github_proxy` | No | `https://ghfast.top/github.com` | `https://ghproxy.link/github.com` | Controls the accelerated download address for the NPS archive during bootstrap. |
+| `image_id` | No | `img-pi0ii46r` | `Custom image ID` | Controls the CVM system image; replacement must be compatible with the instance architecture and availability zone. |
 
 ## Outputs
 
