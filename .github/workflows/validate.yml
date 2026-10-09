@@ -183,8 +183,92 @@ jobs:
                       if result.returncode != 0:
                           # 只有语法严重错误导致无法解析时，这里才会报错
                           print(f'❌ [TF] {template_id}: Syntax Error (Code invalid).')
-                          print(f'    Error details: {result.stderr.strip()}') 
+                          print(f'    Error details: {result.stderr.strip()}')
                           has_error = True
+
+                  # -------------------------------------------------
+                  # Check 4: README 章节契约 (仅 preset 模板)
+                  # -------------------------------------------------
+                  # 规范见 WRITING_TEMPLATES_*.md：必选章节必须按固定顺序出现，
+                  # 且不得插入其他同级标题；可选章节只能使用标准标题并置于必选章节之后。
+                  # base/userdata/compose 模板不在契约约束范围内。
+                  readme_type = None
+                  case_path_4 = os.path.join(template_path, 'case.json')
+                  if os.path.isfile(case_path_4):
+                      try:
+                          with open(case_path_4, 'r', encoding='utf-8') as f4:
+                              readme_type = json.load(f4).get('template') or 'preset'
+                      except (json.JSONDecodeError, OSError):
+                          readme_type = None
+
+                  if readme_type == 'preset':
+                      README_CONTRACT = {
+                          'README.md': {
+                              'required': ['场景说明', '前置条件', '快速使用', '参数说明'],
+                              'optional': ['输出说明', '常见问题', '注意事项', '附录'],
+                          },
+                          'README_EN.md': {
+                              'required': ['Scene Description', 'Prerequisites', 'Quick Start', 'Parameters'],
+                              'optional': ['Outputs', 'FAQ', 'Notes', 'Appendix'],
+                          },
+                      }
+                      fence = chr(96) * 3
+                      for readme_name in sorted(README_CONTRACT.keys()):
+                          contract = README_CONTRACT[readme_name]
+                          readme_path = os.path.join(template_path, readme_name)
+                          if not os.path.isfile(readme_path):
+                              continue
+
+                          headings = []
+                          in_fence = False
+                          with open(readme_path, 'r', encoding='utf-8') as rf:
+                              for raw_line in rf:
+                                  line = raw_line.rstrip()
+                                  if line.lstrip().startswith(fence):
+                                      in_fence = not in_fence
+                                      continue
+                                  if in_fence:
+                                      continue
+                                  if line.startswith('## '):
+                                      headings.append(line[3:].strip())
+
+                          required = contract['required']
+                          optional = contract['optional']
+                          allowed = required + optional
+
+                          missing_sec = [s for s in required if s not in headings]
+                          if missing_sec:
+                              print(f'❌ [README] {template_id}/{readme_name}: Missing required section(s): {missing_sec}')
+                              has_error = True
+
+                          duplicated = [s for s in required if headings.count(s) > 1]
+                          if duplicated:
+                              print(f'❌ [README] {template_id}/{readme_name}: Section(s) must appear at most once: {duplicated}')
+                              has_error = True
+
+                          unknown = [s for s in headings if s not in allowed]
+                          if unknown:
+                              print(f'❌ [README] {template_id}/{readme_name}: Non-standard level-2 heading(s): {unknown}')
+                              print(f'    Allowed headings: {allowed}')
+                              has_error = True
+
+                          if not missing_sec:
+                              positions = [headings.index(s) for s in required]
+                              if positions != sorted(positions):
+                                  got_order = [s for _, s in sorted(zip(positions, required))]
+                                  print(f'❌ [README] {template_id}/{readme_name}: Required sections out of order.')
+                                  print(f'    Expected: {required}')
+                                  print(f'    Found:    {got_order}')
+                                  has_error = True
+
+                              first_optional = None
+                              for s in optional:
+                                  if s in headings:
+                                      first_optional = headings.index(s)
+                                      break
+                              if first_optional is not None and first_optional < positions[-1]:
+                                  print(f'❌ [README] {template_id}/{readme_name}: Optional sections must come after all required sections.')
+                                  has_error = True
 
           print('=' * 60)
           if has_error:
