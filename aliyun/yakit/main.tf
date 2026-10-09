@@ -19,6 +19,11 @@ resource "alicloud_instance" "instance" {
   password                   = local.instance_password
   user_data                  = <<USERDATA
 #!/bin/bash
+# Debian 11 (bullseye) 已 EOL，阿里云镜像的 backports/security 源已归档并返回 404，先清理再 update
+sudo sed -i -e '/bullseye-backports/d' -e '/bullseye-security/d' -e '/debian-security/d' /etc/apt/sources.list
+if [ -d /etc/apt/sources.list.d ]; then
+  sudo find /etc/apt/sources.list.d -type f -name '*.list' -exec sed -i -e '/bullseye-backports/d' -e '/bullseye-security/d' -e '/debian-security/d' {} +
+fi
 sudo apt-get update
 sudo apt-get install -y ca-certificates
 sudo apt-get install -y wget

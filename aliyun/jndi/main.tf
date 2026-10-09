@@ -16,6 +16,11 @@ resource "alicloud_instance" "instance" {
   password                   = local.instance_password
   user_data                  = <<EOF
 #!/bin/bash
+# Debian 11 (bullseye) 已 EOL，阿里云镜像的 backports/security 源已归档并返回 404，先清理再 update
+sudo sed -i -e '/bullseye-backports/d' -e '/bullseye-security/d' -e '/debian-security/d' /etc/apt/sources.list
+if [ -d /etc/apt/sources.list.d ]; then
+  sudo find /etc/apt/sources.list.d -type f -name '*.list' -exec sed -i -e '/bullseye-backports/d' -e '/bullseye-security/d' -e '/debian-security/d' {} +
+fi
 sudo apt-get update
 sudo apt-get install -y ca-certificates
 sudo apt-get -y install wget
@@ -63,6 +68,11 @@ sudo cat /usr/local/java/jdk1.8.0_321/jre/lib/security/java.security | sed 's/\j
 sudo mv /usr/local/java/jdk1.8.0_321/jre/lib/security/java.security /usr/local/java/jdk1.8.0_321/jre/lib/security/java.security.bak2
 sudo mv /usr/local/java/jdk1.8.0_321/jre/lib/security/java.security.bak /usr/local/java/jdk1.8.0_321/jre/lib/security/java.security
 
+sudo wget -O java-chains-1.4.4.tar.gz '${var.github_proxy}/vulhub/java-chains/releases/download/1.4.4/java-chains-1.4.4.tar.gz'
+sudo mkdir -p /root/java-chains
+sudo tar -zxvf java-chains-1.4.4.tar.gz -C /root/java-chains
+sudo rm -f java-chains-1.4.4.tar.gz
+
 sudo wget -O JNDIExploit_feihong.zip '${var.github_proxy}/No-Github/Archive/blob/master/JNDI/JNDIExploit_feihong.zip'
 sudo mkdir -p /root/JNDIExploit_feihong
 sudo unzip JNDIExploit_feihong.zip -d /root/JNDIExploit_feihong
@@ -74,11 +84,6 @@ sudo mkdir -p /root/JNDIExploit_0x727
 sudo unzip JNDIExploit_0x727.zip -d /root/JNDIExploit_0x727
 sudo rm -f JNDIExploit_0x727.zip
 sudo mv /tmp/JNDIExploit_0x727 .
-
-sudo wget -O java-chains-1.4.4.tar.gz '${var.github_proxy}/vulhub/java-chains/releases/download/1.4.4/java-chains-1.4.4.tar.gz'
-sudo mkdir -p /root/java-chains
-sudo tar -zxvf java-chains-1.4.4.tar.gz -C /root/java-chains
-sudo rm -f java-chains-1.4.4.tar.gz
 
 sudo wget -O /root/JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar '${var.github_proxy}/welk1n/JNDI-Injection-Exploit/releases/download/v1.0/JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar'
 
